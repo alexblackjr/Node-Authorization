@@ -1,0 +1,38 @@
+doctype html
+html( lang='en' )
+  head
+    title Welcome
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    .navbar.navbar-default( role='navigation' )
+      .container
+        .navrbar-header
+          button.navbar-toggle( type='button', data-toggle = 'collapse', data-targer = '.navbar-collapse' )
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand( href='#' ) NodeAuth
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            if user //if user is true show member in navbar
+              li( class= ( title == 'Members' ? 'active' : '' ) )
+                a( href='/' ) Members
+            if !user //if user in false show register and login in the navbar
+              li( class= ( title == 'Register' ? 'active' : '' ) )
+                a( href='/users/register' ) Register
+              li( class= ( title == 'Login' ? 'active' : '' ) )
+                a( href='/users/login' ) Login
+          ul.nav.navbar-nav.navbar-right
+            if user //if user is true show logout in navbar
+              li
+               a( href='users/logout' ) Logout
+    .container
+      //- Rendering Messages: Call the messages() function as specified by pug != message
+      //-It creates a <div> with an id='messages'
+      != messages()
+      block content
+
+    script( src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' )
+    script( src='javascripts/bootstrap.js')
